@@ -1,0 +1,84 @@
+localStorage.setItem("user", 值);
+localStorage.getItem("user");
+//请求获取值
+    getdata() {
+      this.$axios
+        .req("")
+        .then(res => {
+          this.list = res.data;
+          //this.paging();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+//路由跳转
+//直接跳转
+this.$router.push("路径");
+//地址栏有值
+this.$router.push({name: "路由名字",query: {id: 值}});
+this.$route.query.id;
+//地址栏无值
+this.$router.push({name: "路由名字",params: {id: 值}});
+this.$route.params.id;
+
+//父子主键传参
+
+
+
+//分页
+v-for="(item,index) in list.slice((currentPage-1)*pageSize,pageSize*currentPage)" :key="index"
+
+v-for="(item,index) in arr[currentPage-1]" :key="index"
+    <div class="block">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-sizes="[10, 20, 30, 40]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="list.length"
+      ></el-pagination>
+    </div>
+data() {
+    return {
+      //用于接收接口获取到的数据
+      list: [],
+      //分页时显示的第几页
+      currentPage: 1,
+      //每一页有多少条数据
+      pageSize: 10,
+      //
+      arr: []
+    };
+  },
+  methods: {
+    //每一页有多少条数据
+    handleSizeChange(val) {
+      // console.log(`每页 ${val} 条`);
+      this.pageSize = val;
+      this.paging();
+    },
+    //当前是第几页
+    handleCurrentChange(val) {
+      // console.log(`当前页: ${val}`);
+      this.currentPage = Number(val);
+    },
+    //获取每一页要展示多少条数据
+    paging() {
+      this.arr = [];
+      for (let i = 0; i < this.list.length; i += this.pageSize) {
+        this.arr.push(this.list.slice(i, i + this.pageSize));
+      }
+    },
+  }
+//dayjs用法
+      // let time1 = '2019-12-08T06:23:17.931Z'
+      // // format是格式化是时间
+      // let time2 = this.$dayjs(time1).format('YYYY-MM-DD hh:mm:ss')
+      // // valueOf是转换成时间戳
+      // let time3 = this.$dayjs(time1).valueOf()
+      // console.log(time2)
+      // console.log(time3)
+      // this.getData()

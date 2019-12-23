@@ -1,0 +1,11 @@
+﻿1.课程分类: http://120.78.14.107/api/v2/index/categories
+
+2.轮播图: http://120.78.14.107/api/v2/index/banner-pictures
+
+3.楼+实战课程: http://120.78.14.107/api/v2/index/louplus
+
+4.课程分类: http://120.78.14.107/api/v2/index/classfication-courses
+
+5.训练营强化: http://120.78.14.107/api/v2/index/bootcamps
+
+6.学习路径: http://120.78.14.107/api/v2/index/paths
