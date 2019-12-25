@@ -75,9 +75,20 @@
         <el-input v-model="input" placeholder="搜索 课程/问答" suffix-icon="el-icon-search"></el-input>
       </div>
     </div>
+    <!-- 轮播图 -->
     <SlideShow></SlideShow>
+    <!-- 楼+ 实战课程 -->
     <PracticeCourse></PracticeCourse>
+    <!-- 精选项目课  -->
     <Classical></Classical>
+    <!-- 近期好课  -->
+    <GoodLesson></GoodLesson>
+    <!-- 基本功 -->
+    <BasicSkills></BasicSkills>
+    <!-- 后端开发 -->
+    <BackendDevelopment></BackendDevelopment>
+    <!-- 云计算与大数据 -->
+    <BigData></BigData>
   </div>
 </template>
 
@@ -85,9 +96,13 @@
 import SlideShow from '../components/slideshow/SlideShow'
 import PracticeCourse from '../components/practicecourse/PracticeCourse'
 import Classical from '../components/classical/Classical'
+import GoodLesson from '../components/goodlesson/GoodLesson'
+import BasicSkills from '../components/basicskills/BasicSkills'
+import BackendDevelopment from '../components/backenddevelopment/BackendDevelopment'
+import BigData from '../components/bigdata/BigData'
 export default {
   name: "long",
-  components: {SlideShow,PracticeCourse,Classical},
+  components: {SlideShow,PracticeCourse,Classical,GoodLesson,BasicSkills,BackendDevelopment,BigData},
   props: {},
   data() {
     return {

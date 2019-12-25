@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 515px;">
+  <div style="height: 515px;" class="el_carousel">
     <!-- 轮播图 -->
     <div class="home-swapper">
       <!-- 轮播图 -->

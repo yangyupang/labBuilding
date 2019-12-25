@@ -1,32 +1,28 @@
 <template>
-  <!-- 精选项目课  -->
+  <!-- 基本功 -->
   <div>
-    <div class="classical">
+    <div class="basicskills">
       <!-- 标题 -->
-      <div class="classical-title">
-        <span>{{classicallist.classify_name}} |</span>
-        <span>{{classicallist.description}}</span>
+      <div class="basicskills-title">
+        <span>{{basicskillslist.classify_name}} |</span>
+        <span>{{basicskillslist.description}}</span>
         <span>更多></span>
       </div>
-      <!-- 精选项目课 classicallist.courses -->
-      <div class="classical-courses">
-        <!-- 最大的图片 -->
-        <div class="courses-img">
-          <img :src="pictureurl" alt />
-        </div>
-        <!-- 课程小图 -->
-        <div class="course-item" v-for="(item,index) in classicallist.courses" :key="index">
+      <!-- 基本功 classicallist.courses -->
+      <div class="basicskills-courses">
+        <!-- 基本功小图 -->
+        <div class="course-item" v-for="(item,index) in basicskillslist.courses" :key="index">
           <div class="item-img">
             <img :src="item.picture_url" alt />
           </div>
-          <!-- 课程描述 -->
+          <!-- 基本功描述 -->
           <div class="item-describe">
             <div class="item-describes">
               <h6>{{item.name}}</h6>
               <div class="item-describes-text">{{item.description}}</div>
             </div>
           </div>
-          <!-- 课程标签会员 训练营 -->
+          <!-- 基本功 标签会员 训练营 -->
           <div class="item-people">
             <img src="../../assets/img/people.svg" alt />
             <span>{{item.students_count}}</span>
@@ -43,19 +39,18 @@
 export default {
   data() {
     return {
-      classicallist: [],
-      pictureurl: {}
+      basicskillslist: []
     };
   },
   components: {},
   methods: {
     // 请求课程数据取第一项 （精选项目课）
-    getClassicalData() {
+    getBasicSkillsData() {
       this.$axios
         .req("/classfication-courses")
         .then(res => {
-          this.classicallist = res[0];
-          this.pictureurl = res[0].recommend_course.picture_url;
+          this.basicskillslist = res[2];
+          //   this.pictureurl = res[0].recommend_course.picture_url;
           // console.log(this.classicallist);
         })
         .catch(err => {
@@ -64,7 +59,7 @@ export default {
     }
   },
   mounted() {
-    this.getClassicalData();
+    this.getBasicSkillsData();
   },
   watch: {},
   computed: {},
@@ -73,14 +68,14 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.classical {
+.basicskills {
   width: 74vw;
   min-width: 1080px;
   margin: 0 auto;
-  height: 606px;
+  height: 370px;
   overflow: hidden;
-  // 精选项目课标题
-  .classical-title {
+  // 基本功标题
+  .basicskills-title {
     margin: 30px 0;
     span {
       &:hover {
@@ -103,27 +98,13 @@ export default {
       }
     }
   }
-  // 精选项目课图
-  .classical-courses {
+  // 基本功 图
+  .basicskills-courses {
     height: 540px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    // 最大的图片
-    .courses-img {
-      width: 49.2%;
-      height: 250px;
-      &:hover {
-        transition: all 0.5s;
-        cursor: pointer;
-        box-shadow: 1px 2px 20px 1px #6c757d;
-      }
-      img {
-        width: 100%;
-        height: 250px;
-        // box-shadow: 0 1px 2px 0 #ddd;
-      }
-    }
+
     // 课程小图
     .item-img {
       width: 100%;

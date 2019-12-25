@@ -3,16 +3,31 @@
     border: 1px solid #08bf91 !important;
 }
 
-.el-carousel__arrow--left {
-    left: 50% !important;
-    margin-left: -290px !important;
-}
-
-.el-carousel__arrow--right {
-    right: 50% !important;
-    margin-right: -540px !important;
+.el_carousel {
+    .el-carousel__arrow--left {
+        left: 50% !important;
+        margin-left: -290px !important;
+    }
+    .el-carousel__arrow--right {
+        right: 50% !important;
+        margin-right: -540px !important;
+    }
 }
 
 .el-card__body {
     padding: 0 !important;
+}
+
+.el_indicators {
+    .el-carousel__indicators--horizontal {
+        display: none !important;
+    }
+    .el-carousel__arrow--left {
+        margin-top: -30px !important;
+        margin-left: -10px !important;
+    }
+    .el-carousel__arrow--right {
+        margin-top: -30px !important;
+        margin-right: -10px !important;
+    }
 }

@@ -1,40 +1,40 @@
 <template>
   <!-- 精选项目课  -->
   <div>
-    <div class="classical">
+    <div class="goodlesson el_indicators">
       <!-- 标题 -->
-      <div class="classical-title">
-        <span>{{classicallist.classify_name}} |</span>
-        <span>{{classicallist.description}}</span>
+      <div class="goodlesson-title">
+        <span>{{goodLessonlists.classify_name}} |</span>
+        <span>{{goodLessonlists.description}}</span>
         <span>更多></span>
       </div>
-      <!-- 精选项目课 classicallist.courses -->
-      <div class="classical-courses">
-        <!-- 最大的图片 -->
-        <div class="courses-img">
-          <img :src="pictureurl" alt />
-        </div>
-        <!-- 课程小图 -->
-        <div class="course-item" v-for="(item,index) in classicallist.courses" :key="index">
-          <div class="item-img">
-            <img :src="item.picture_url" alt />
-          </div>
-          <!-- 课程描述 -->
-          <div class="item-describe">
-            <div class="item-describes">
-              <h6>{{item.name}}</h6>
-              <div class="item-describes-text">{{item.description}}</div>
+      <el-carousel :interval="5000" arrow="always">
+        <el-carousel-item class="recentwheel" v-for="(item,index) in goodLessonlist" :key="index">
+          <!-- 课程小图 -->
+          <div class="goodlesson-courses">
+            <div class="course-item" v-for="(item0,index0) in item" :key="index0">
+              <div class="item-img">
+                <img :src="item0.picture_url" alt />
+              </div>
+              <!-- 课程描述 -->
+              <div class="item-describe">
+                <div class="item-describes">
+                  <h6>{{item0.name}}</h6>
+                  <div class="item-describes-text">{{item0.description}}</div>
+                </div>
+              </div>
+              <!-- 课程标签会员 训练营 -->
+              <div class="item-people">
+                <img src="../../assets/img/people.svg" alt />
+                <span>{{item0.students_count}}</span>
+                <div class="bootcamp" v-if="item0.fee_type === 'bootcamp'">训练营</div>
+                <div class="member" v-if="item0.fee_type === 'member'">会员</div>
+                <div class="member" v-if="item0.fee_type === 'limit_free'">限免</div>
+              </div>
             </div>
           </div>
-          <!-- 课程标签会员 训练营 -->
-          <div class="item-people">
-            <img src="../../assets/img/people.svg" alt />
-            <span>{{item.students_count}}</span>
-            <div class="bootcamp" v-if="item.fee_type === 'bootcamp'">训练营</div>
-            <div class="member" v-if="item.fee_type === 'member'">会员</div>
-          </div>
-        </div>
-      </div>
+        </el-carousel-item>
+      </el-carousel>
     </div>
   </div>
 </template>
@@ -43,20 +43,23 @@
 export default {
   data() {
     return {
-      classicallist: [],
-      pictureurl: {}
+      goodLessonlist: [],
+      goodLessonlists: []
     };
   },
   components: {},
   methods: {
-    // 请求课程数据取第一项 （精选项目课）
-    getClassicalData() {
+    // 请求近期好课数据取第二项 （近期好课）
+    getGoodLessonData() {
       this.$axios
         .req("/classfication-courses")
         .then(res => {
-          this.classicallist = res[0];
-          this.pictureurl = res[0].recommend_course.picture_url;
-          // console.log(this.classicallist);
+          this.goodLessonlists = res[1];
+          for (let i = 0; i < this.goodLessonlists.courses.length; i += 4) {
+            this.goodLessonlist.push(
+              this.goodLessonlists.courses.slice(i, i + 4)
+            );
+          }
         })
         .catch(err => {
           console.log(err);
@@ -64,7 +67,7 @@ export default {
     }
   },
   mounted() {
-    this.getClassicalData();
+    this.getGoodLessonData();
   },
   watch: {},
   computed: {},
@@ -73,14 +76,19 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.classical {
+.recentwheel {
+  height: 255px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.goodlesson {
   width: 74vw;
   min-width: 1080px;
   margin: 0 auto;
-  height: 606px;
   overflow: hidden;
-  // 精选项目课标题
-  .classical-title {
+  // 近期好课标题
+  .goodlesson-title {
     margin: 30px 0;
     span {
       &:hover {
@@ -103,28 +111,12 @@ export default {
       }
     }
   }
-  // 精选项目课图
-  .classical-courses {
-    height: 540px;
+  // 近期好课图
+  .goodlesson-courses {
+    height: 300px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    // 最大的图片
-    .courses-img {
-      width: 49.2%;
-      height: 250px;
-      &:hover {
-        transition: all 0.5s;
-        cursor: pointer;
-        box-shadow: 1px 2px 20px 1px #6c757d;
-      }
-      img {
-        width: 100%;
-        height: 250px;
-        // box-shadow: 0 1px 2px 0 #ddd;
-      }
-    }
-    // 课程小图
     .item-img {
       width: 100%;
       img {
@@ -143,13 +135,15 @@ export default {
         // 课程标题
         h6 {
           color: #666;
+          //   width: 236px;
+          white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          white-space: nowrap;
         }
         // 课程详细描述
         .item-describes-text {
           height: 53px;
+          //   width: 236px;
           margin-top: 4px;
           color: #666;
           font-size: 13px;
@@ -210,7 +204,7 @@ export default {
       }
     }
   }
-  // 精选项目课们
+  // 近期好课们
   .course-item {
     width: 23.8%;
     height: 250px;
@@ -222,7 +216,7 @@ export default {
       box-shadow: 1px 2px 20px 1px #6c757d;
       transition: all 0.5s;
     }
-    // 精选项目课程移入显示详情
+    // 近期好课程移入显示详情
     &:hover .item-describe {
       transform: translateY(-84px);
       transition: all 0.5s;
