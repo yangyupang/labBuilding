@@ -1,0 +1,18 @@
+.el-input__inner:focus {
+    outline: none;
+    border: 1px solid #08bf91 !important;
+}
+
+.el-carousel__arrow--left {
+    left: 50% !important;
+    margin-left: -290px !important;
+}
+
+.el-carousel__arrow--right {
+    right: 50% !important;
+    margin-right: -540px !important;
+}
+
+.el-card__body {
+    padding: 0 !important;
+}
