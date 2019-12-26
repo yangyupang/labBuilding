@@ -8,6 +8,11 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 import service from "./http"
 import dayjs from 'dayjs'
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
+
+Vue.use(ViewUI);
+
 
 Vue.use(Vant);
 Vue.use(ElementUI);

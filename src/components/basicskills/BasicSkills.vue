@@ -44,7 +44,7 @@ export default {
   },
   components: {},
   methods: {
-    // 请求课程数据取第一项 （精选项目课）
+    // 请求课程数据取第三项 （基本功）
     getBasicSkillsData() {
       this.$axios
         .req("/classfication-courses")
@@ -72,7 +72,6 @@ export default {
   width: 74vw;
   min-width: 1080px;
   margin: 0 auto;
-  height: 370px;
   overflow: hidden;
   // 基本功标题
   .basicskills-title {
@@ -100,7 +99,6 @@ export default {
   }
   // 基本功 图
   .basicskills-courses {
-    height: 540px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -119,14 +117,17 @@ export default {
       position: absolute;
       transform: translateY(0);
       transition: all 0.5s;
-      width: 92.2%;
       .item-describes {
         // 课程标题
         h6 {
+          display: block;
+          width: 100%;
           color: #666;
+          white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          white-space: nowrap;
+          font-size: 16px;
+          width: 280px;
         }
         // 课程详细描述
         .item-describes-text {
@@ -154,7 +155,7 @@ export default {
       color: #9b9da2;
       background-color: #fff;
       position: relative;
-      top: 30px;
+      top: 38px;
       img {
         width: 22px;
         display: block;
@@ -163,31 +164,31 @@ export default {
         line-height: 58px;
         margin-left: 10px;
       }
-      //训练营
+       //训练营
       .bootcamp {
         color: #fff;
         background-color: #f66;
-        padding: 5px 10px;
+        padding: 3px 10px;
         font-size: 12px;
         border-radius: 15px;
-        height: 30%;
-        line-height: 15px;
+        height: 40%;
+        line-height: 17px;
         position: relative;
-        top: 29%;
+        top: 34%;
         left: 52%;
       }
       //会员
       .member {
         color: #fff;
         background-color: #ffc500;
-        padding: 5px 10px;
+        padding: 3px 10px;
         font-size: 12px;
         border-radius: 15px;
-        height: 30%;
-        line-height: 15px;
+        height: 40%;
+        line-height: 17px;
         position: relative;
-        top: 29%;
-        left: 55%;
+        top: 34%;
+        left: 52%;
       }
     }
   }
