@@ -21,6 +21,10 @@
             <div class="item-img">
               <img :src="item.picture_url" alt />
             </div>
+            <div class="labe" v-if="item.label === '倍受好评'">
+              <div>倍受好评</div>
+              <div></div>
+            </div>
             <!-- 课程描述 -->
             <div class="item-describe">
               <div class="item-describes">
@@ -125,6 +129,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      z-index: 1;
     }
   }
   // 精选项目课们
@@ -231,6 +236,32 @@ export default {
       position: relative;
       top: 34%;
       left: 52%;
+    }
+  }
+}
+.labe {
+  div {
+    &:nth-child(1) {
+      position: absolute;
+      top: 0;
+      left: -8px;
+      z-index: 2;
+      padding: 1px 8px;
+      color: #fff;
+      background: #f66;
+      font-size: 12px;
+    }
+    &:nth-child(2) {
+      width: 10px;
+      height: 10px;
+      background: #de524d;
+      position: absolute;
+      top: 14px;
+      left: -6px;
+      z-index: -1;
+      transform: rotate(45deg);
+      border: 5px solid transparent;
+      // transform: rotateX(90deg)
     }
   }
 }

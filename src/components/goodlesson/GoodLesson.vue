@@ -1,5 +1,5 @@
 <template>
-  <!-- 精选项目课  -->
+  <!-- 近期好课目课  -->
   <div>
     <div class="goodlesson el_indicators">
       <!-- 标题 -->
@@ -15,6 +15,10 @@
             <div class="course-item" v-for="(item0,index0) in item" :key="index0">
               <div class="item-img">
                 <img :src="item0.picture_url" alt />
+              </div>
+              <div class="labe" v-if="item0.online_type === 'coming_soon'">
+                <div>即将上线</div>
+                <div></div>
               </div>
               <!-- 课程描述 -->
               <div class="item-describe">
@@ -222,6 +226,32 @@ export default {
     &:hover .item-describe {
       transform: translateY(-84px);
       transition: all 0.5s;
+    }
+  }
+}
+.labe {
+  div {
+    &:nth-child(1) {
+      position: absolute;
+      top: 0;
+      left: -8px;
+      z-index: 2;
+      padding: 1px 8px;
+      color: #fff;
+      background: #f66;
+      font-size: 12px;
+    }
+    &:nth-child(2) {
+      width: 10px;
+      height: 10px;
+      background: #de524d;
+      position: absolute;
+      top: 14px;
+      left: -6px;
+      z-index: -1;
+      transform: rotate(45deg);
+      border: 5px solid transparent;
+      // transform: rotateX(90deg)
     }
   }
 }

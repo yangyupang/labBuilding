@@ -31,7 +31,7 @@
             <!--   -->
             <div
               class="course-details"
-              :style="{'top':showtop(index),'bottom':showbot(index)}"
+              :style="{'top':showtop(index),'left':showleft(index)}"
               v-if="num === index"
             >
               <div class="bg">{{item.name}}</div>
@@ -107,12 +107,22 @@ export default {
         return "57px";
       } else if (indextop > 1 && indextop < 5) {
         return "87px";
+      } 
+      else if (indextop >= 5) {
+        return "170px";
       }
     },
-    showbot(indexbot) {
-      if (indexbot >= 5) {
-        return 0;
-      }
+    // showbot(indexbot) {
+    //   if (indexbot >= 5) {
+    //     return "-100px";
+    //   }
+    // },
+    showleft(indexleft) {
+      // if (indexleft >= 0 && indexleft <= 4) {
+
+      // }
+      // else return 0;
+      return "23%";
     }
   },
   mounted() {

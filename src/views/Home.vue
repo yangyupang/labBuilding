@@ -279,7 +279,7 @@ export default {
         this.show = false;
       }
       // 判断页面滚动的距离是否大于吸顶元素的位置
-      console.log(scrollTop);
+      // console.log(scrollTop);
     }
   },
   mounted() {
